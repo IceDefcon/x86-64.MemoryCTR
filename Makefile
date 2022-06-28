@@ -4,6 +4,7 @@ ASM 		= nasm
 AFLAGS 		= -f elf64
 CFLAGS 		= -m64
 ASM_OBJECTS	= src/link.o
+LDSCRIPT    = linker/linker.ld
 
 SRCS=\
     src/main.cpp \
@@ -17,7 +18,7 @@ INCLUDES=\
 all: link main
 
 main:
-	$(CC) $(SRCS) $(CFLAGS) $(INCLUDES) $(ASM_OBJECTS) -o $(TARGET)
+	$(CC) $(SRCS) $(CFLAGS) $(INCLUDES) $(ASM_OBJECTS) -T $(LDSCRIPT) -o $(TARGET)
 
 link:
 	$(ASM) $(AFLAGS) $(SRCS_ASM)

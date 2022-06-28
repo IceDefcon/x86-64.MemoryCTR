@@ -2,7 +2,7 @@ TARGET 		= asmlink
 CC  		= g++
 ASM 		= nasm 
 AFLAGS 		= -f elf64
-CFLAGS 		= -m64 -lpthread -lrt -lmysqlclient -lmysqlcppconn
+CFLAGS 		= -m64
 ASM_OBJECTS	= src/link.o
 
 SRCS=\

@@ -12,8 +12,8 @@ int main(int argc, char* argv[])
     int * pa = &a;
     int * pb = &b;
 
-    printf("poiter a ---> %x\n",pa);
-    printf("poiter b ---> %x\n",pb);
+    printf("pointer a ---> %x\n",pa);
+    printf("pointer b ---> %x\n",pb);
 
     //RegDump();
 

@@ -1,24 +1,10 @@
 #include <iostream>     // system
-#include "mem.h"
+#include "hack.h"
+
 
 using namespace std;
 
-#define MemAssemblyLength 8
-
-
-unsigned int A = 0xFFFF1234;
-unsigned int B = 0x00001234;
-
-void Function_A(void)
-{
-    printf("This is execution of the void Function A \n");
-}
-
-void Function_B(int x)
-{
-    x = x + 1;
-    printf("This is execution of the void Function B with variable x:%d \n",x);
-}
+extern MemAssembly HACK;
 
 int main(int argc, char* argv[]) 
 {
@@ -28,33 +14,43 @@ int main(int argc, char* argv[])
     unsigned int * pB = &B;
 
     printf("Original Data A ---> 0x%08x\n",A);
-    printf("Original Data B ---> 0x%08x\n\n",B);
-
+    printf("Original Data B ---> 0x%08x\n",B);
     printf("Pointer to A variable ---> %p\n",pA);
     printf("Pointer to B variable ---> %p\n\n",pB);
+
+    unsigned int * pC = &C;
+    unsigned int * pD = &D;
+
+    printf("Data from  C variable ---> %x\n",C);
+    printf("Data from  D variable ---> %x\n",D);
+    printf("Pointer to C variable ---> %p\n",pC);
+    printf("Pointer to D variable ---> %p\n\n",pD);
 
     void (*pFunction_A)(void) = &Function_A;
     void (*pFunction_B)(int)  = &Function_B;
 
-    MemAssembly * pMemAssembly;
-    pMemAssembly->MemDump();
-
-    //
     // Testing function pointers
-    //
     pFunction_A();
     pFunction_B(100);
-    (*pFunction_B)(200);
 
     printf("Pointer to Function_A ---> %p\n",pFunction_A);
     printf("Pointer to Function_B ---> %p\n\n",pFunction_B);
-    
-    //
-    // Not Fixed Yet ---> Address is not linked
-    //
-    printf("Pointer to MemAssembly Class ---> %p\n\n",pMemAssembly);
 
-    //void (*pTest)(void) = &pMemAssembly->MemDump();
+    printf("Defined Pointer to HACK              ---> %p\n",&HACK);
+    MemAssembly * pMemAssembly;
+    printf("Dynamic Pointer to MemAssembly Class ---> %p\n",pMemAssembly);
+    pMemAssembly = &HACK;
+    printf("Hacked Pointer to MemAssembly  Class ---> %p\n",pMemAssembly);
+
+    MemAssembly MemAssemblyInstance;
+    MemAssemblyInstance.MemDump();
+    pMemAssembly->MemDump();
+
+    //
+    // Need inmplemntation of addee
+    // To memory regions of the funcitons
+    // Inside the clas + variables !!!!
+    //
 
     return 0;
 }

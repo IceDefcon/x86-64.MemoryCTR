@@ -2,7 +2,9 @@
 
 Hacking Dynamic Memory @ASM
 
-This is my 1st ever Hack link to the dynamic memory
+Testing this to specify location of the variables inside memory
+
+Then ussing ASSEMBLY enter memory regions in order to read data variables
 
 The problem here is the core dump by my Ubuntu Linux
 

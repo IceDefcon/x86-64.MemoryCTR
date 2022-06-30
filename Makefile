@@ -3,14 +3,14 @@ CC  		= g++
 ASM 		= nasm 
 AFLAGS 		= -f elf64
 CFLAGS 		= -m64
-ASM_OBJECTS	= src/link.o
+ASM_OBJECTS	= src_asm/link.o
 LDSCRIPT    = linker/linker.ld
 
-SRCS=\
+SRC=\
     src/main.cpp \
 
-SRCS_ASM=\
-	src/link.asm \
+SRC_ASM=\
+	src_asm/link.asm \
 
 INCLUDES=\
     -Iinclude
@@ -18,10 +18,10 @@ INCLUDES=\
 all: link main
 
 main:
-	$(CC) $(SRCS) $(CFLAGS) $(INCLUDES) $(ASM_OBJECTS) -T $(LDSCRIPT) -o $(TARGET)
+	$(CC) $(SRC) $(CFLAGS) $(INCLUDES) $(ASM_OBJECTS) -T $(LDSCRIPT) -o $(TARGET)
 
 link:
-	$(ASM) $(AFLAGS) $(SRCS_ASM)
+	$(ASM) $(AFLAGS) $(SRC_ASM)
 
 clean:
 	rm $(TARGET) $(ASM_OBJECTS)

@@ -2,10 +2,10 @@
 
 Hacking Dynamic Memory @ASM
 
-Testing this to specify location of the variables inside memory
+1. Define varables
+2. Store them in memory location defined in the linker script
+3. Read them from memory ---> Using ASSEMBLIES
 
-Then ussing ASSEMBLY enter memory regions in order to read data variables
-
-The problem here is the core dump by my Ubuntu Linux
+The key here is ---> To avoid core dump in Ubuntu Linux
 
 # ICE

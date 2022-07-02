@@ -1,6 +1,6 @@
 //
 // Author: Ice.Marek
-// 2022 IceNET Technology
+// 2022 IceNET Te
 //
 #include <iostream>     // system
 

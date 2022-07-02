@@ -1,10 +1,10 @@
 #include <iostream>     // system
 #include "hack.h"
 
-
 using namespace std;
 
-extern MemAssembly HACK;
+extern MemAssembly STACK;
+extern MemAssembly HEAP;
 
 int main(int argc, char* argv[]) 
 {
@@ -36,20 +36,27 @@ int main(int argc, char* argv[])
     printf("Pointer to Function_A ---> %p\n",pFunction_A);
     printf("Pointer to Function_B ---> %p\n\n",pFunction_B);
 
-    printf("Defined Pointer to HACK              ---> %p\n",&HACK);
-    MemAssembly * pMemAssembly;
-    printf("Dynamic Pointer to MemAssembly Class ---> %p\n",pMemAssembly);
-    pMemAssembly = &HACK;
-    printf("Hacked Pointer to MemAssembly  Class ---> %p\n",pMemAssembly);
+    MemAssembly * pMemAssembly[4];
+    printf("Dynamic Pointer to [0] MemAssembly Class ---> %p\n",pMemAssembly[0]);
+    printf("Dynamic Pointer to [1] MemAssembly Class ---> %p\n",pMemAssembly[1]);
+    printf("Dynamic Pointer to [2] MemAssembly Class ---> %p\n",pMemAssembly[2]);
+    printf("Dynamic Pointer to [3] MemAssembly Class ---> %p\n",pMemAssembly[3]);
+
+    pMemAssembly[0] = &STACK;
+    pMemAssembly[1] = &HEAP;
+    printf("Linked  Pointer to [0] MemAssembly Class ---> %p\n",pMemAssembly[0]);
+    printf("Linked  Pointer to [1] MemAssembly Class ---> %p\n",pMemAssembly[1]);
+
+    printf("Or just Pointer to STACK                 ---> %p\n",&STACK);
+    printf("Or just Pointer to HEAP                  ---> %p\n\n",&HEAP);
 
     MemAssembly MemAssemblyInstance;
     MemAssemblyInstance.MemDump();
-    pMemAssembly->MemDump();
+    pMemAssembly[0]->MemDump();
 
     //
-    // Need inmplemntation of addee
-    // To memory regions of the funcitons
-    // Inside the clas + variables !!!!
+    // Need implemntation of how to addess the
+    // memory regions of funcitons inside class
     //
 
     return 0;

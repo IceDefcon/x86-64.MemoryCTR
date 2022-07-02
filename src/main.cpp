@@ -47,36 +47,20 @@ int main(int argc, char* argv[])
     printf("Pointer to Function_A ---> %p\n",pFunction_A);
     printf("Pointer to Function_B ---> %p\n\n",pFunction_B);
 
-    //
-    // This section is still not working !!!
-    //
-    cout << "THIS SECTION IS STILL NOT FIGURED OUT !!!!!!!!!!!!" << endl;
-    cout << "THIS SECTION IS STILL NOT FIGURED OUT !!!!!!!!!!!!" << endl;
-    cout << "THIS SECTION IS STILL NOT FIGURED OUT !!!!!!!!!!!!\n" << endl;
-
     cout << ".MemAssembly is defined @ 0xB000000\n" << endl;
 
-    MemAssembly * pMemAssembly[8];
-    printf("Dynamic Pointer to [0] MemAssembly Class ---> %p\n",pMemAssembly[0]);
-    printf("Dynamic Pointer to [1] MemAssembly Class ---> %p\n",pMemAssembly[1]);
-    printf("Dynamic Pointer to [2] MemAssembly Class ---> %p\n",pMemAssembly[2]);
-    printf("Dynamic Pointer to [3] MemAssembly Class ---> %p\n",pMemAssembly[3]);
-    printf("Dynamic Pointer to [4] MemAssembly Class ---> %p\n",pMemAssembly[4]);
-    printf("Dynamic Pointer to [5] MemAssembly Class ---> %p\n",pMemAssembly[5]);
-    printf("Dynamic Pointer to [6] MemAssembly Class ---> %p\n",pMemAssembly[6]);
-    printf("Dynamic Pointer to [7] MemAssembly Class ---> %p\n",pMemAssembly[7]);
+    MemAssembly * pStack = &STACK;
+    MemAssembly * pHeap  = &HEAP;
 
-    pMemAssembly[0] = &STACK;
-    pMemAssembly[1] = &HEAP;
-    printf("Linked  Pointer to [0] MemAssembly Class ---> %p\n",pMemAssembly[0]);
-    printf("Linked  Pointer to [1] MemAssembly Class ---> %p\n",pMemAssembly[1]);
+    printf("Linked to the STACK ---> %p\n\n",pStack);
 
-    printf("Or just Pointer to STACK                 ---> %p\n",&STACK);
-    printf("Or just Pointer to HEAP                  ---> %p\n\n",&HEAP);
+    uintptr_t base = (uintptr_t)&DataStruct.A;
 
-    MemAssembly MemAssemblyInstance;
-    MemAssemblyInstance.MemDump();
-    pMemAssembly[0]->MemDump();
+    pStack->MemRead(base + 0x0);
+    pStack->MemRead(base + 0x4);
+    pStack->MemRead(base + 0x8);
+    pStack->MemRead(base + 0xC);
+    pStack->MemDump();
 
     return 0;
 }

@@ -10,21 +10,32 @@ int main(int argc, char* argv[])
 {
     system("clear");
 
-    unsigned int * pA = &A;
-    unsigned int * pB = &B;
+    cout << ".data + .bss are defined @ 0x8000000 ---> And so the unsigned variables\n" << endl;
 
-    printf("Original Data A ---> 0x%08x\n",A);
-    printf("Original Data B ---> 0x%08x\n",B);
-    printf("Pointer to A variable ---> %p\n",pA);
-    printf("Pointer to B variable ---> %p\n\n",pB);
+    DataStruct.A = 1;
+    DataStruct.B = 2;
+    DataStruct.C = 3;
+    DataStruct.D = 4;
 
-    unsigned int * pC = &C;
-    unsigned int * pD = &D;
+    unsigned int * pA = &DataStruct.A;
+    unsigned int * pB = &DataStruct.B;
+    unsigned int * pC = &DataStruct.C;
+    unsigned int * pD = &DataStruct.D;
 
-    printf("Data from  C variable ---> %x\n",C);
-    printf("Data from  D variable ---> %x\n",D);
-    printf("Pointer to C variable ---> %p\n",pC);
-    printf("Pointer to D variable ---> %p\n\n",pD);
+    printf("pA ---> %p\n",&DataStruct.A);
+    printf("pB ---> %p\n",&DataStruct.B);
+    printf("pC ---> %p\n",&DataStruct.C);
+    printf("pD ---> %p\n\n",&DataStruct.D);
+
+    cout << ".iceNET is defined @ 0xA000000\n" << endl;
+
+    unsigned int * pE = &E;
+    unsigned int * pF = &F;
+
+    printf("pE ---> %p\n",pE);
+    printf("pF ---> %p\n\n",pF);
+
+    cout << ".text is defined @ 0x1000000\n" << endl;
 
     void (*pFunction_A)(void) = &Function_A;
     void (*pFunction_B)(int)  = &Function_B;
@@ -36,11 +47,24 @@ int main(int argc, char* argv[])
     printf("Pointer to Function_A ---> %p\n",pFunction_A);
     printf("Pointer to Function_B ---> %p\n\n",pFunction_B);
 
-    MemAssembly * pMemAssembly[4];
+    //
+    // This section is still not working !!!
+    //
+    cout << "THIS SECTION IS STILL NOT FIGURED OUT !!!!!!!!!!!!" << endl;
+    cout << "THIS SECTION IS STILL NOT FIGURED OUT !!!!!!!!!!!!" << endl;
+    cout << "THIS SECTION IS STILL NOT FIGURED OUT !!!!!!!!!!!!\n" << endl;
+
+    cout << ".MemAssembly is defined @ 0xB000000\n" << endl;
+
+    MemAssembly * pMemAssembly[8];
     printf("Dynamic Pointer to [0] MemAssembly Class ---> %p\n",pMemAssembly[0]);
     printf("Dynamic Pointer to [1] MemAssembly Class ---> %p\n",pMemAssembly[1]);
     printf("Dynamic Pointer to [2] MemAssembly Class ---> %p\n",pMemAssembly[2]);
     printf("Dynamic Pointer to [3] MemAssembly Class ---> %p\n",pMemAssembly[3]);
+    printf("Dynamic Pointer to [4] MemAssembly Class ---> %p\n",pMemAssembly[4]);
+    printf("Dynamic Pointer to [5] MemAssembly Class ---> %p\n",pMemAssembly[5]);
+    printf("Dynamic Pointer to [6] MemAssembly Class ---> %p\n",pMemAssembly[6]);
+    printf("Dynamic Pointer to [7] MemAssembly Class ---> %p\n",pMemAssembly[7]);
 
     pMemAssembly[0] = &STACK;
     pMemAssembly[1] = &HEAP;
@@ -53,11 +77,6 @@ int main(int argc, char* argv[])
     MemAssembly MemAssemblyInstance;
     MemAssemblyInstance.MemDump();
     pMemAssembly[0]->MemDump();
-
-    //
-    // Need implemntation of how to addess the
-    // memory regions of funcitons inside class
-    //
 
     return 0;
 }

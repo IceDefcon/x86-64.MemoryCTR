@@ -2,10 +2,10 @@
 
 Hacking Dynamic Memory @ASM
 
-1. Define Class + variables
-2. Store them in memory using custom section via linker script
-3. Read them from memory ---> Using combined C/ASM
-
-The key here is ---> To avoid core dump in Ubuntu Linux
+1. Define Struct, Class and Functions 
+2. Link them into specified memory region using linker script
+3. Implemet STACK + HEAP in order to communicate via combined C/ASM
+4. Design API for the DMA Engine !!!
+5. For fuck sake ----> Avoid core dump in Linux
 
 # ICE

@@ -34,11 +34,6 @@ int main(int argc, char* argv[])
     unsigned int * pC = &DataStruct.C;
     unsigned int * pD = &DataStruct.D;
 
-    cout << "DataStruct.A = " << DataStruct.A << endl;
-    cout << "DataStruct.B = " << DataStruct.B << endl;
-    cout << "DataStruct.C = " << DataStruct.C << endl;
-    cout << "DataStruct.D = " << DataStruct.D << endl;
-
     printf("pA ---> %p\n",&DataStruct.A);
     printf("pB ---> %p\n",&DataStruct.B);
     printf("pC ---> %p\n",&DataStruct.C);

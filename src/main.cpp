@@ -10,6 +10,18 @@ int main(int argc, char* argv[])
 {
     system("clear");
 
+    cout << ".text is defined @ 0x1000000\n" << endl;
+
+    void (*pFunction_A)(void) = &Function_A;
+    void (*pFunction_B)(int)  = &Function_B;
+
+    // Testing function pointers
+    pFunction_A();
+    pFunction_B(100);
+
+    printf("Pointer to Function_A ---> %p\n",pFunction_A);
+    printf("Pointer to Function_B ---> %p\n\n",pFunction_B);
+
     cout << ".data + .bss are defined @ 0x8000000 ---> And so the unsigned variables\n" << endl;
 
     DataStruct.A = 1;
@@ -21,6 +33,11 @@ int main(int argc, char* argv[])
     unsigned int * pB = &DataStruct.B;
     unsigned int * pC = &DataStruct.C;
     unsigned int * pD = &DataStruct.D;
+
+    cout << "DataStruct.A = " << DataStruct.A << endl;
+    cout << "DataStruct.B = " << DataStruct.B << endl;
+    cout << "DataStruct.C = " << DataStruct.C << endl;
+    cout << "DataStruct.D = " << DataStruct.D << endl;
 
     printf("pA ---> %p\n",&DataStruct.A);
     printf("pB ---> %p\n",&DataStruct.B);
@@ -35,24 +52,12 @@ int main(int argc, char* argv[])
     printf("pE ---> %p\n",pE);
     printf("pF ---> %p\n\n",pF);
 
-    cout << ".text is defined @ 0x1000000\n" << endl;
-
-    void (*pFunction_A)(void) = &Function_A;
-    void (*pFunction_B)(int)  = &Function_B;
-
-    // Testing function pointers
-    pFunction_A();
-    pFunction_B(100);
-
-    printf("Pointer to Function_A ---> %p\n",pFunction_A);
-    printf("Pointer to Function_B ---> %p\n\n",pFunction_B);
-
     cout << ".MemAssembly is defined @ 0xB000000\n" << endl;
 
     MemAssembly * pStack = &STACK;
     MemAssembly * pHeap  = &HEAP;
 
-    printf("Linked to the STACK ---> %p\n\n",pStack);
+    printf("STACK is linked to ---> %p\n\n",pStack);
 
     uintptr_t base = (uintptr_t)&DataStruct.A;
 

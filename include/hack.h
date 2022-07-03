@@ -30,7 +30,7 @@ class MemAssembly{
 
         void MemRead(int offset)
         {
-            printf("Read Specific Memory ---> %lx\n",MEMORY_READ(offset));
+            printf("Read from 0x%x Address ---> %lx\n",offset,MEMORY_READ(offset));
         }
 
         void MemDump(void)

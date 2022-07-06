@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
     printf("pFunction_D ---> %p\n",pFunction_D);
 
     cout << endl;
-    cout << ".data + .bss are defined @ 0x8000000 ---> And so the unsigned variables\n" << endl;
+    cout << ".data + .bss are defined @ 0x8000000\n" << endl;
 
     DataStruct.A = 1;
     DataStruct.B = 2;
@@ -56,12 +56,11 @@ int main(int argc, char* argv[])
     printf("pE ---> %p\n",pE);
     printf("pF ---> %p\n\n",pF);
 
-    cout << ".MemAssembly is defined @ 0xB000000" << endl;
+    cout << ".MemAssembly is defined @ 0xB000000\n" << endl;
 
     MemAssembly * pStack = &STACK;
     MemAssembly * pHeap  = &HEAP;
 
-    cout << endl;
     cout << "STACK is linked to ---> "<< pStack << endl;
     cout << endl;
 

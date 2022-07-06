@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 {
     system("clear");
 
-    cout << ".text is defined @ 0x1000000\n" << endl;
+    cout << ".text @ 0x1000000\n" << endl;
 
     void (*pFunction_A)(void)     = &Function_A;
     void (*pFunction_B)(int)      = &Function_B;
@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
     printf("pFunction_D ---> %p\n",pFunction_D);
 
     cout << endl;
-    cout << ".data + .bss are defined @ 0x8000000\n" << endl;
+    cout << ".data + .bss @ 0x8000000\n" << endl;
 
     DataStruct.A = 1;
     DataStruct.B = 2;
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
     printf("pD ---> %p\n",&DataStruct.D);
 
     cout << endl;
-    cout << ".iceNET is defined @ 0xA000000\n" << endl;
+    cout << ".iceNET @ 0xA000000\n" << endl;
 
     unsigned int * pE = &E;
     unsigned int * pF = &F;
@@ -56,13 +56,10 @@ int main(int argc, char* argv[])
     printf("pE ---> %p\n",pE);
     printf("pF ---> %p\n\n",pF);
 
-    cout << ".MemAssembly is defined @ 0xB000000\n" << endl;
+    cout << ".MemAssembly @ 0xB000000\n" << endl;
 
     MemAssembly * pStack = &STACK;
     MemAssembly * pHeap  = &HEAP;
-
-    cout << "STACK is linked to ---> "<< pStack << endl;
-    cout << endl;
 
     uintptr_t base = (uintptr_t)&DataStruct.A;
 

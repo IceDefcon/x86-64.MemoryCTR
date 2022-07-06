@@ -9,6 +9,7 @@ LDSCRIPT    = linker/linker.ld
 SRC=\
     src/main.cpp \
     src/hack.cpp \
+    src/test.cpp \
 
 SRC_ASM=\
 	src_asm/link.asm \

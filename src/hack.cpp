@@ -17,13 +17,16 @@ MemAssembly::~MemAssembly()
     cout << "!!! DESTRUCTOR CALLED !!! ---> Deleting Instance of MemAssembly" << endl;
 }
 
-void Function_A(void)
+void MemAssembly::MemRead(int offset)
 {
-    cout << "This is execution of the void Function A" << endl;
+    printf("Read from 0x%x ---> %lx\n",offset,MEMORY_READ(offset));
 }
 
-void Function_B(int x)
+void MemAssembly::MemDump(void)
 {
-    x = x + 1;
-    cout << "This is execution of the void Function B with variable x = x + 1 ---> " << x << endl;
+    cout << endl;
+    printf("x  ---> %p y  ---> %p z  ---> %p t  ---> %p\n", &x, &y, &z, &t);
+    printf("a  ---> %p b  ---> %p c  ---> %p d  ---> %p\n", &a, &b, &c, &d);
+    printf("dx ---> %p dy ---> %p dz ---> %p dt ---> %p\n", &dx, &dy, &dz, &dt);
 }
+

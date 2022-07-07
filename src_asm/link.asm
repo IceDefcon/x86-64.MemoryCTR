@@ -12,31 +12,29 @@
 
 section .text
 
-global _RCX
-_RCX:
-	mov rax, rdi
-	ret
-
 global MEMORY_READ
 MEMORY_READ:
 	mov rax, rdi
 	mov eax, [eax]
 	ret
 
+
+
+
 section .iceNET
 
-	global E
-	E:
-		dq 0xDDDDDDDD
+global E
+E:
+	dq 0xEEEEEEEE
 
-	global F
-	F:
-		dq 0xEEEEEEEE
+global F
+F:
+	dq 0xFFFFFFFF
+
+
+
 
 section .MemAssembly
 
-	global STACK
-	STACK:
-
-	global HEAP
-	HEAP:
+global STACK
+STACK:

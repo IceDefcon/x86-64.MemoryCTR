@@ -5,7 +5,6 @@
 using namespace std;
 
 extern MemAssembly STACK;
-extern MemAssembly HEAP;
 
 int main(int argc, char* argv[]) 
 {
@@ -13,24 +12,24 @@ int main(int argc, char* argv[])
 
     cout << "SECTIONS" << endl;
     cout << "{" << endl;
-    cout << "  . = 0x1000000;" << endl;
-    cout << "  .text : { *(.text) }" << endl;
     cout << "  . = 0x2000000;" << endl;
-    cout << "  .data : { *(.data) }" << endl;
-    cout << "  . = 0x3000000;" << endl;
-    cout << "  .bss : { *(.bss) }" << endl;
+    cout << "  .text : { *(.text) }" << endl;
     cout << "  . = 0x4000000;" << endl;
+    cout << "  .data : { *(.data) }" << endl;
+    cout << "  . = 0x6000000;" << endl;
+    cout << "  .bss : { *(.bss) }" << endl;
+    cout << "  . = 0x8000000;" << endl;
     cout << "  .iceNET : { *(.iceNET)}" << endl;
-    cout << "  . = 0x5000000;" << endl;
+    cout << "  . = 0xA000000;" << endl;
     cout << "  .MemAssembly : { *(.MemAssembly)}" << endl;
     cout << "}" << endl << endl;
 
-    static const int AA = 0;
+    static const int AA = 1;
     static const int BB = 2;
-    static int CC = 3;
-    static int DD = 4;
-    static int EE;
-    static int FF;
+    static int CC = 3;          // Initialised DATA
+    static int DD = 4;          // Initialised DATA
+    static int EE;              // Uninitialised BSS
+    static int FF;              // Uninitialised BSS
 
     const int * pAA =  &AA;
     const int * pBB =  &BB;
@@ -39,14 +38,14 @@ int main(int argc, char* argv[])
     int * pEE = &EE;
     int * pFF = &FF;
 
-    cout << "pAA --->" << pAA << endl;
-    cout << "pBB --->" << pBB << endl;
-    cout << "pCC --->" << pCC << endl;
-    cout << "pDD --->" << pDD << endl;
-    cout << "pEE --->" << pEE << endl;
-    cout << "pFF --->" << pFF << endl << endl;
+    cout << "pAA ---> " << pAA << " ????" << endl;
+    cout << "pBB ---> " << pBB << " ????" << endl;
+    cout << "pCC ---> " << pCC << endl;
+    cout << "pDD ---> " << pDD << endl;
+    cout << "pEE ---> " << pEE << endl;
+    cout << "pFF ---> " << pFF << endl << endl;
 
-    cout << ".text @ 0x1000000\n" << endl;
+    cout << ".text @ 0x2000000\n" << endl;
 
     void (*pFunction_A)(void)     = &Function_A;
     void (*pFunction_B)(int)      = &Function_B;
@@ -65,7 +64,8 @@ int main(int argc, char* argv[])
     printf("pFunction_D ---> %p\n",pFunction_D);
 
     cout << endl;
-    cout << ".data + .bss @ 0x8000000\n" << endl;
+    cout << ".data @ 0x4000000" << endl;
+    cout << ".bss  @ 0x6000000\n" << endl;
 
     DataStruct.A = 1;
     DataStruct.B = 2;
@@ -82,19 +82,7 @@ int main(int argc, char* argv[])
     printf("pC ---> %p\n",&DataStruct.C);
     printf("pD ---> %p\n",&DataStruct.D);
 
-    cout << endl;
-    cout << ".iceNET @ 0xA000000\n" << endl;
-
-    unsigned int * pE = &E;
-    unsigned int * pF = &F;
-
-    printf("pE ---> %p\n",pE);
-    printf("pF ---> %p\n\n",pF);
-
-    cout << ".MemAssembly @ 0xB000000\n" << endl;
-
     MemAssembly * pStack = &STACK;
-    MemAssembly * pHeap  = &HEAP;
 
     uintptr_t base = (uintptr_t)&DataStruct.A;
 
@@ -102,6 +90,18 @@ int main(int argc, char* argv[])
     pStack->MemRead(base + 0x4);
     pStack->MemRead(base + 0x8);
     pStack->MemRead(base + 0xC);
+
+    cout << endl;
+    cout << ".iceNET @ 0x8000000\n" << endl;
+
+    unsigned int * pE = &E;
+    unsigned int * pF = &F;
+
+    printf("pE ---> %p\n",pE);
+    printf("pF ---> %p\n\n",pF);
+
+    cout << ".MemAssembly @ 0xA000000" << endl;
+
     pStack->MemDump();
 
     return 0;

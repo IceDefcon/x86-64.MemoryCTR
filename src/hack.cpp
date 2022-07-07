@@ -19,7 +19,7 @@ MemAssembly::~MemAssembly()
 
 void MemAssembly::MemRead(int offset)
 {
-    printf("Read from 0x%x ---> %lx\n",offset,MEMORY_READ(offset));
+    printf("Read Data from 0x%x ---> %lx\n",offset,MEMORY_READ(offset));
 }
 
 void MemAssembly::MemDump(void)

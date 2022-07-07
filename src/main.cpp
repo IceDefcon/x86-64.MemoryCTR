@@ -11,6 +11,41 @@ int main(int argc, char* argv[])
 {
     system("clear");
 
+    cout << "SECTIONS" << endl;
+    cout << "{" << endl;
+    cout << "  . = 0x1000000;" << endl;
+    cout << "  .text : { *(.text) }" << endl;
+    cout << "  . = 0x2000000;" << endl;
+    cout << "  .data : { *(.data) }" << endl;
+    cout << "  . = 0x3000000;" << endl;
+    cout << "  .bss : { *(.bss) }" << endl;
+    cout << "  . = 0x4000000;" << endl;
+    cout << "  .iceNET : { *(.iceNET)}" << endl;
+    cout << "  . = 0x5000000;" << endl;
+    cout << "  .MemAssembly : { *(.MemAssembly)}" << endl;
+    cout << "}" << endl << endl;
+
+    static const int AA = 0;
+    static const int BB = 2;
+    static int CC = 3;
+    static int DD = 4;
+    static int EE;
+    static int FF;
+
+    const int * pAA =  &AA;
+    const int * pBB =  &BB;
+    int * pCC =  &CC;
+    int * pDD =  &DD;
+    int * pEE = &EE;
+    int * pFF = &FF;
+
+    cout << "pAA --->" << pAA << endl;
+    cout << "pBB --->" << pBB << endl;
+    cout << "pCC --->" << pCC << endl;
+    cout << "pDD --->" << pDD << endl;
+    cout << "pEE --->" << pEE << endl;
+    cout << "pFF --->" << pFF << endl << endl;
+
     cout << ".text @ 0x1000000\n" << endl;
 
     void (*pFunction_A)(void)     = &Function_A;

@@ -1,15 +1,13 @@
 #ifndef TEST_H
 #define TEST_H
 
-struct
+struct 
 {
     unsigned int A;
     unsigned int B;
     unsigned int C;
     unsigned int D;
 } DataStruct;
-
-
 
 extern unsigned int E;
 extern unsigned int F;

@@ -1,13 +1,14 @@
 ;
-; Author: Ice Marek
-; 2022 IceNET Technology
+; Author: 	Ice Marek
+; Date: 	Summer '22 
+; Company: 	IceNET Technology
 ;
 ; Order of input arguments
 ;
-; 1st ---> RCX
-; 2nd ---> RDX
-; 3rh ---> RSI
-; 4th ---> RDI
+; 1st ---> RDI
+; 2nd ---> RSI
+; 3rh ---> RDX
+; 4th ---> RCX
 ;
 
 section .text
@@ -18,9 +19,6 @@ MEMORY_READ:
 	mov eax, [eax]
 	ret
 
-
-
-
 section .iceNET
 
 global E
@@ -30,9 +28,6 @@ E:
 global F
 F:
 	dq 0xFFFFFFFF
-
-
-
 
 section .MemAssembly
 

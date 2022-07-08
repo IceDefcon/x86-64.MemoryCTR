@@ -24,26 +24,23 @@ int main(int argc, char* argv[])
     cout << "  .MemAssembly : { *(.MemAssembly)}" << endl;
     cout << "}" << endl << endl;
 
-    static const int AA = 1;
-    static const int BB = 2;
-    static int CC = 3;          // Initialised DATA
-    static int DD = 4;          // Initialised DATA
-    static int EE;              // Uninitialised BSS
-    static int FF;              // Uninitialised BSS
+    cout << "Initialised    @ 0x4000000" << endl;
+    cout << "Un-initialised @ 0x6000000 \n" << endl;
 
-    const int * pAA =  &AA;
-    const int * pBB =  &BB;
-    int * pCC =  &CC;
-    int * pDD =  &DD;
-    int * pEE = &EE;
-    int * pFF = &FF;
+    static int Variable_A = 0xABC;      // Initialised DATA
+    static int Variable_B = 0x123;      // Initialised DATA
+    static int Variable_C;              // Uninitialised BSS
+    static int Variable_D;              // Uninitialised BSS
 
-    cout << "pAA ---> " << pAA << " ????" << endl;
-    cout << "pBB ---> " << pBB << " ????" << endl;
-    cout << "pCC ---> " << pCC << endl;
-    cout << "pDD ---> " << pDD << endl;
-    cout << "pEE ---> " << pEE << endl;
-    cout << "pFF ---> " << pFF << endl << endl;
+    int * pVariable_A = &Variable_A;
+    int * pVariable_B = &Variable_B;
+    int * pVariable_C = &Variable_C;
+    int * pVariable_D = &Variable_D;
+
+    cout << "pVariable_A ---> " << pVariable_A << endl;
+    cout << "pVariable_B ---> " << pVariable_B << endl;
+    cout << "pVariable_C ---> " << pVariable_C << endl;
+    cout << "pVariable_D ---> " << pVariable_D << endl << endl;
 
     cout << ".text @ 0x2000000\n" << endl;
 

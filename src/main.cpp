@@ -1,4 +1,8 @@
-#include <iostream>     // system
+//
+// Author: Ice.Marek
+// 2022 IceNET Technology
+//
+#include <iostream>
 #include "hack.h"
 #include "test.h"
 

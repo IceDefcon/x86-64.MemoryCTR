@@ -1,6 +1,7 @@
-
-
-
+//
+// Author: Ice.Marek
+// 2022 IceNET Technology
+//
 void Function_A(void)
 {
 

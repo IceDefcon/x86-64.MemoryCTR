@@ -1,6 +1,6 @@
 //
 // Author: Ice.Marek
-// 2022 IceNET Te
+// 2022 IceNET Technology
 //
 #include <iostream>     // system
 #include "hack.h"

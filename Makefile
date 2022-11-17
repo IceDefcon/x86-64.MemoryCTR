@@ -2,7 +2,7 @@ TARGET 		= asmlink
 CC  		= g++
 ASM 		= nasm 
 AFLAGS 		= -f elf64
-CFLAGS 		= -m64
+CFLAGS 		= -m64 
 ASM_OBJECTS	= src_asm/link.o
 LDSCRIPT    = linker/linker.ld
 

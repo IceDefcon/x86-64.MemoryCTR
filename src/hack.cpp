@@ -19,14 +19,14 @@ MemAssembly::~MemAssembly()
 
 void MemAssembly::MemRead(int offset)
 {
-    printf("Read Data from 0x%x ---> %lx\n",offset,MEMORY_READ(offset));
+    cout << "   Read Data from 0x" << hex << offset << " ---> " << MEMORY_READ(offset) << endl;
 }
 
 void MemAssembly::MemDump(void)
 {
     cout << endl;
-    printf("x  ---> %p y  ---> %p z  ---> %p t  ---> %p\n", &x, &y, &z, &t);
-    printf("a  ---> %p b  ---> %p c  ---> %p d  ---> %p\n", &a, &b, &c, &d);
-    printf("dx ---> %p dy ---> %p dz ---> %p dt ---> %p\n", &dx, &dy, &dz, &dt);
+    cout << "   x  ---> " << &x  << " y  ---> " << &y  << " z  ---> " << &z  << " t  ---> " << &t  << endl;
+    cout << "   a  ---> " << &a  << " b  ---> " << &b  << " c  ---> " << &c  << " d  ---> " << &d  << endl;
+    cout << "   dx ---> " << &dx << " dy ---> " << &dy << " dz ---> " << &dz << " dt ---> " << &dt << endl;
 }
 

@@ -28,25 +28,7 @@ int main(int argc, char* argv[])
     cout << "  .MemAssembly : { *(.MemAssembly)}" << endl;
     cout << "}" << endl << endl;
 
-    cout << "Initialised    @ 0x4000000" << endl;
-    cout << "Un-initialised @ 0x6000000 \n" << endl;
-
-    static int Variable_A = 0xABC;      // Initialised DATA
-    static int Variable_B = 0x123;      // Initialised DATA
-    static int Variable_C;              // Uninitialised BSS
-    static int Variable_D;              // Uninitialised BSS
-
-    int * pVariable_A = &Variable_A;
-    int * pVariable_B = &Variable_B;
-    int * pVariable_C = &Variable_C;
-    int * pVariable_D = &Variable_D;
-
-    cout << "pVariable_A ---> " << pVariable_A << endl;
-    cout << "pVariable_B ---> " << pVariable_B << endl;
-    cout << "pVariable_C ---> " << pVariable_C << endl;
-    cout << "pVariable_D ---> " << pVariable_D << endl << endl;
-
-    cout << ".text @ 0x2000000\n" << endl;
+    cout << "---==[ .text ---> 0x2000000 ]==---\n" << endl;
 
     void (*pFunction_A)(void)     = &Function_A;
     void (*pFunction_B)(int)      = &Function_B;
@@ -59,14 +41,41 @@ int main(int argc, char* argv[])
     pFunction_C(100,200);
     pFunction_D();
 
-    printf("pFunction_A ---> %p\n",pFunction_A);
-    printf("pFunction_B ---> %p\n",pFunction_B);
-    printf("pFunction_C ---> %p\n",pFunction_C);
-    printf("pFunction_D ---> %p\n",pFunction_D);
+    printf("    pFunction_A ---> %p\n",pFunction_A);
+    printf("    pFunction_B ---> %p\n",pFunction_B);
+    printf("    pFunction_C ---> %p\n",pFunction_C);
+    printf("    pFunction_D ---> %p\n\n",pFunction_D);
 
+    cout << "   pFunction_A ---> " << (int*)pFunction_A << endl;
+    cout << "   pFunction_B ---> " << (int*)pFunction_B << endl;
+    cout << "   pFunction_C ---> " << (int*)pFunction_C << endl;
+    cout << "   pFunction_D ---> " << (int*)pFunction_D << endl;
     cout << endl;
-    cout << ".data @ 0x4000000" << endl;
-    cout << ".bss  @ 0x6000000\n" << endl;
+
+    cout << "---==[ .data ---> 0x4000000 ]==---\n" << endl;
+
+    // Initialised variables with specific data ---> .data
+    static int Variable_A = 0xABC;
+    static int Variable_B = 0x123;
+
+    int * pVariable_A = &Variable_A;
+    int * pVariable_B = &Variable_B;
+
+    cout << "   pVariable_A ---> " << pVariable_A << endl;
+    cout << "   pVariable_B ---> " << pVariable_B << endl;
+    cout << endl;
+
+    cout << "---==[ .bss ---> 0x6000000 ]==---\n" << endl;
+
+    // Un-initialised variables ---> .bss
+    static int Variable_C;
+    static int Variable_D;
+
+    int * pVariable_C = &Variable_C;
+    int * pVariable_D = &Variable_D;
+
+    cout << "   pVariable_C ---> " << pVariable_C << endl;
+    cout << "   pVariable_D ---> " << pVariable_D << endl << endl;
 
     DataStruct.A = 1;
     DataStruct.B = 2;
@@ -78,10 +87,10 @@ int main(int argc, char* argv[])
     unsigned int * pC = &DataStruct.C;
     unsigned int * pD = &DataStruct.D;
 
-    printf("pA ---> %p\n",&DataStruct.A);
-    printf("pB ---> %p\n",&DataStruct.B);
-    printf("pC ---> %p\n",&DataStruct.C);
-    printf("pD ---> %p\n",&DataStruct.D);
+    cout << "   pA ---> " << &DataStruct.A << endl;
+    cout << "   pB ---> " << &DataStruct.B << endl;
+    cout << "   pC ---> " << &DataStruct.C << endl;
+    cout << "   pD ---> " << &DataStruct.D << endl;
 
     MemAssembly * pStack = &STACK;
 
@@ -91,17 +100,18 @@ int main(int argc, char* argv[])
     pStack->MemRead(base + 0x4);
     pStack->MemRead(base + 0x8);
     pStack->MemRead(base + 0xC);
-
     cout << endl;
-    cout << ".iceNET @ 0x8000000\n" << endl;
+
+    cout << "---==[ .iceNET ---> 0x8000000 ]==---\n" << endl;
 
     unsigned int * pE = &E;
     unsigned int * pF = &F;
 
-    printf("pE ---> %p\n",pE);
-    printf("pF ---> %p\n\n",pF);
+    cout << "   pE ---> " << pE << endl;
+    cout << "   pF ---> " << pF << endl;
+    cout << endl;
 
-    cout << ".MemAssembly @ 0xA000000" << endl;
+    cout << "---==[ .MemAssembly ---> 0xA000000 ]==---" << endl;
 
     pStack->MemDump();
 

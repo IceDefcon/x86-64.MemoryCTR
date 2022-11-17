@@ -6,12 +6,16 @@ CFLAGS 		= -m64
 ASM_OBJECTS	= src_asm/link.o
 LDSCRIPT    = linker/linker.ld
 
-SRC = $(wildcard src/*.cpp)
-OBJECTS = $(SRC:.cpp=.o)
+SRC=\
+    src/main.cpp \
+    src/hack.cpp \
+    src/test.cpp \
 
-SRC_ASM = $(wildcard src_asm/*.asm)
+SRC_ASM=\
+	src_asm/link.asm \
 
-INCLUDES = -Iinclude
+INCLUDES=\
+    -Iinclude
 
 all: link main
 

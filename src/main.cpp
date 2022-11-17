@@ -41,11 +41,6 @@ int main(int argc, char* argv[])
     pFunction_C(100,200);
     pFunction_D();
 
-    printf("    pFunction_A ---> %p\n",pFunction_A);
-    printf("    pFunction_B ---> %p\n",pFunction_B);
-    printf("    pFunction_C ---> %p\n",pFunction_C);
-    printf("    pFunction_D ---> %p\n\n",pFunction_D);
-
     cout << "   pFunction_A ---> " << (int*)pFunction_A << endl;
     cout << "   pFunction_B ---> " << (int*)pFunction_B << endl;
     cout << "   pFunction_C ---> " << (int*)pFunction_C << endl;

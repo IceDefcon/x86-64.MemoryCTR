@@ -2,10 +2,9 @@
 
 Hacking Dynamic Memory @ASM
 
-1. Define Struct, Class and Functions 
-2. Link them into specified memory region using linker script
-3. Implemet STACK + HEAP in order to communicate via combined C/ASM
-4. Design API for the DMA Engine !!!
-5. Avoid ---> Core Dump in Linux
+1. Specify RAM memory address for sections in the linker script 
+2. Link 64bit assembly with c/c++
+3. Design STACK
+4. Display Results
 
 # ICE

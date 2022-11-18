@@ -1,25 +1,39 @@
 TARGET 		= asmlink
-CC  		= g++
-ASM 		= nasm 
+GCC  		= g++
+NASM 		= nasm 
+
 AFLAGS 		= -f elf64
-CFLAGS 		= -m64 
-ASM_OBJECTS	= src_asm/link.o
-LDSCRIPT    = linker/linker.ld
+CFLAGS 		= -m64
 
-SRC = $(wildcard src/*.cpp)
-OBJECTS = $(SRC:.cpp=.o)
+LDSCRIPT    := linker/linker.ld
 
-SRC_ASM = $(wildcard src_asm/*.asm)
+SRC 		:= src
+OBJ 		:= obj
+CPP_INCLUDE	:= include
+CPP_SOURCES := $(wildcard $(SRC)/*.cpp)
+CPP_OBJECTS := $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(CPP_SOURCES))
 
-INCLUDES = -Iinclude
+SRC_ASM 	:= src_asm
+OBJ_ASM 	:= obj_asm
+ASM_SOURCES := $(wildcard src_asm/*.asm)
+ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
 
-all: link main
+all: $(CPP_OBJECTS) $(ASM_OBJECTS)
+	$(GCC) -T $(LDSCRIPT) $^ -o $(TARGET)
 
-main:
-	$(CC) $(SRC) $(CFLAGS) $(INCLUDES) $(ASM_OBJECTS) -T $(LDSCRIPT) -o $(TARGET)
+$(OBJ)/%.o: $(SRC)/%.cpp
+	$(GCC) $(CFLAGS) -I $(CPP_INCLUDE) -c $< -o $@
 
-link:
-	$(ASM) $(AFLAGS) $(SRC_ASM)
+$(ASM_OBJECTS):$(ASM_SOURCES)
+	$(NASM) $(AFLAGS) $(ASM_SOURCES) -o $@
 
 clean:
-	rm $(TARGET) $(ASM_OBJECTS)
+	rm $(TARGET) $(ASM_OBJECTS) $(CPP_OBJECTS)
+
+
+
+
+
+
+
+

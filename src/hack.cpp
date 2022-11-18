@@ -29,4 +29,3 @@ void MemAssembly::MemDump(void)
     cout << "   a  ---> " << &a  << " b  ---> " << &b  << " c  ---> " << &c  << " d  ---> " << &d  << endl;
     cout << "   dx ---> " << &dx << " dy ---> " << &dy << " dz ---> " << &dz << " dt ---> " << &dt << endl;
 }
-

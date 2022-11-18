@@ -1,3 +1,7 @@
+#
+# Author: Ice.Marek
+# 2022 IceNET Technology
+#
 TARGET 		= asmlink
 GCC  		= g++
 NASM 		= nasm 
@@ -8,13 +12,13 @@ CFLAGS 		= -m64
 LDSCRIPT    := linker/linker.ld
 
 SRC 		:= src
-OBJ 		:= obj
+OBJ 		:= $(SRC)/obj
 CPP_INCLUDE	:= include
 CPP_SOURCES := $(wildcard $(SRC)/*.cpp)
 CPP_OBJECTS := $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(CPP_SOURCES))
 
 SRC_ASM 	:= src_asm
-OBJ_ASM 	:= obj_asm
+OBJ_ASM 	:= $(SRC_ASM)/obj_asm
 ASM_SOURCES := $(wildcard src_asm/*.asm)
 ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
 
@@ -29,11 +33,3 @@ $(ASM_OBJECTS):$(ASM_SOURCES)
 
 clean:
 	rm $(TARGET) $(ASM_OBJECTS) $(CPP_OBJECTS)
-
-
-
-
-
-
-
-

@@ -1,3 +1,7 @@
+/*                         */
+/* Author: Ice.Marek       */
+/* 2022 IceNET Technology  */
+/*                         */
 SECTIONS
 {
   . = 0x2000000;

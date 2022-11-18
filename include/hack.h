@@ -1,3 +1,7 @@
+//
+// Author: Ice.Marek
+// 2022 IceNET Technology
+//
 #ifndef HACK_H
 #define HACK_H
 

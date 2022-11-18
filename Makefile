@@ -18,7 +18,7 @@ CPP_SOURCES := $(wildcard $(SRC)/*.cpp)
 CPP_OBJECTS := $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(CPP_SOURCES))
 
 SRC_ASM 	:= src_asm
-OBJ_ASM 	:= $(SRC_ASM)/obj_asm
+OBJ_ASM 	:= $(SRC_ASM)/obj
 ASM_SOURCES := $(wildcard src_asm/*.asm)
 ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
 

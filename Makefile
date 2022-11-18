@@ -12,13 +12,13 @@ CFLAGS 		= -m64
 LDSCRIPT    := linker/linker.ld
 
 SRC 		:= src
-OBJ 		:= $(SRC)/obj
+OBJ 		:= src
 CPP_INCLUDE	:= include
 CPP_SOURCES := $(wildcard $(SRC)/*.cpp)
 CPP_OBJECTS := $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(CPP_SOURCES))
 
 SRC_ASM 	:= src_asm
-OBJ_ASM 	:= $(SRC_ASM)/obj
+OBJ_ASM 	:= src_asm
 ASM_SOURCES := $(wildcard src_asm/*.asm)
 ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
 

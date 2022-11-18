@@ -4,7 +4,7 @@
 //
 #include <iostream>
 #include "hack.h"
-#include "test.h"
+#include "func.h"
 
 using namespace std;
 

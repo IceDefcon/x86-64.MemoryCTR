@@ -19,6 +19,16 @@ MEMORY_READ:
 	mov eax, [eax]
 	ret
 
+global CALL_POINTER
+CALL_POINTER:
+	endbr64 
+	push rbp
+	mov  rbp,rsp
+	mov  rax, rdi
+	call rax
+	pop  rbp
+	ret    
+
 section .iceNET
 
 global E

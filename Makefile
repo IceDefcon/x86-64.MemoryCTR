@@ -24,12 +24,13 @@ ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
 
 all: $(CPP_OBJECTS) $(ASM_OBJECTS)
 	$(GCC) -T $(LDSCRIPT) $^ -o $(TARGET)
+	objdump -d asmlink > asmlink.asm -M intel
 
 $(OBJ)/%.o: $(SRC)/%.cpp
 	$(GCC) $(CFLAGS) -I $(CPP_INCLUDE) -c $< -o $@
 
-$(ASM_OBJECTS):$(ASM_SOURCES)
+$(OBJ_ASM)/%.o:$(SRC_ASM)/%.asm
 	$(NASM) $(AFLAGS) $(ASM_SOURCES) -o $@
 
 clean:
-	rm $(TARGET) $(ASM_OBJECTS) $(CPP_OBJECTS)
+	rm $(TARGET) $(ASM_OBJECTS) $(CPP_OBJECTS) asmlink.asm

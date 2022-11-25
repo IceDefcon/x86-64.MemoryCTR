@@ -10,6 +10,8 @@ using namespace std;
 
 extern MemAssembly STACK;
 
+extern "C" unsigned long CALL_POINTER(int* offset);
+
 int main(int argc, char* argv[]) 
 {
     system("clear");
@@ -43,7 +45,7 @@ int main(int argc, char* argv[])
 
     cout << "   pFunction_A ---> " << (int*)pFunction_A << endl;
     cout << "   pFunction_B ---> " << (int*)pFunction_B << endl;
-    cout << "   pFunction_C ---> " << (int*)pFunction_C << endl;
+    cout << "   pFunction_C ---> " << (long*)pFunction_C << endl;
     cout << "   pFunction_D ---> " << (int*)pFunction_D << endl;
     cout << endl;
 
@@ -109,6 +111,13 @@ int main(int argc, char* argv[])
     cout << "---==[ .MemAssembly ---> 0xA000000 ]==---" << endl;
 
     pStack->MemDump();
+
+    cout << endl;
+    cout << "---==[ Final Test ]==---" << endl;
+
+    cout << endl;
+    cout << "   Calling from pointer ---> " << (int*)pFunction_D << endl;
+    CALL_POINTER((int*)pFunction_D);
 
     return 0;
 }

@@ -116,8 +116,10 @@ int main(int argc, char* argv[])
     cout << "---==[ Final Test ]==---" << endl;
 
     cout << endl;
-    cout << "   Calling from pointer ---> " << (int*)pFunction_D << endl;
+    cout << "   Calling from >> (int*)pFunction_D ---> " << (int*)pFunction_D << endl;
     CALL_POINTER((int*)pFunction_D);
+    cout << "   Calling from >> 0x20001a0 ---> " << (int*)pFunction_D << endl;
+    CALL_POINTER((int*)0x20001a0);
 
     return 0;
 }

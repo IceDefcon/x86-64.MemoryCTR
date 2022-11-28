@@ -29,6 +29,14 @@ CALL_POINTER:
 	pop  rbp
 	ret    
 
+section .MemClass
+
+global STACK
+STACK:
+
+global HEAP
+HEAP:
+
 section .iceNET
 
 global E
@@ -39,7 +47,3 @@ global F
 F:
 	dq 0xFFFFFFFF
 
-section .MemAssembly
-
-global STACK
-STACK:

@@ -9,12 +9,12 @@ using namespace std;
 
 MemAssembly::MemAssembly()
 {
-    cout << "!!! CONSTRUCTOR CALLED !!! ---> Creating Instance of MemAssembly" << endl << endl;
+    cout << "   !!! CONSTRUCTOR CALLED !!! ---> Creating Instance of MemAssembly" << endl;
 }
 
 MemAssembly::~MemAssembly()
 {
-    cout << "!!! DESTRUCTOR CALLED !!! ---> Deleting Instance of MemAssembly" << endl;
+    cout << "   !!! DESTRUCTOR CALLED !!!  ---> Deleting Instance of MemAssembly" << endl;
 }
 
 void MemAssembly::MemRead(int offset)

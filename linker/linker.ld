@@ -11,7 +11,7 @@ SECTIONS
   . = 0x6000000;
   .bss : { *(.bss) }
   . = 0x8000000;
-  .iceNET : { *(.iceNET)}
+  .MemClass : { *(.MemClass)}
   . = 0xA000000;
-  .MemAssembly : { *(.MemAssembly)}
+  .iceNET : { *(.iceNET)}
 }

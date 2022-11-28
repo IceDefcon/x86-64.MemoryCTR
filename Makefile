@@ -29,6 +29,10 @@ main: $(CPP_OBJECTS) $(ASM_OBJECTS)
 	$(GCC) -T $(LDSCRIPT) $^ -o $(TARGET)
 	objdump -d -M intel $^ > $(TARGET).dbg
 
+dynamic: $(CPP_OBJECTS) $(ASM_OBJECTS)
+	$(GCC) $^ -o $(TARGET)
+	objdump -d -M intel $^ > $(TARGET).dbg
+	
 $(OBJ)/%.o: $(SRC)/%.cpp
 	$(GCC) $(CFLAGS) -I $(CPP_INCLUDE) -c $< -o $@
 

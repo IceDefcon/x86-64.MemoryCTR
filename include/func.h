@@ -13,8 +13,10 @@ struct
     unsigned int D;
 } DataStruct;
 
-extern unsigned int E;
-extern unsigned int F;
+extern unsigned int X;
+extern MemAssembly STACK, HEAP;
+extern "C" unsigned long CALL_PROCEDURE(int* offset);
+extern "C" unsigned long MEMORY_READ(unsigned int offset);
 
 void Function_A(void);
 void Function_B(int x);

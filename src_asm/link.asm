@@ -19,8 +19,8 @@ MEMORY_READ:
 	mov eax, [eax]
 	ret
 
-global CALL_POINTER
-CALL_POINTER:
+global CALL_PROCEDURE
+CALL_PROCEDURE:
 	endbr64 
 	push rbp
 	mov  rbp,rsp
@@ -39,11 +39,9 @@ HEAP:
 
 section .iceNET
 
-global E
-E:
-	dq 0xEEEEEEEE
-
-global F
-F:
-	dq 0xFFFFFFFF
+global X
+X:
+	dq 0x11112222
+	dq 0x33334444
+	dq 0x55556666
 

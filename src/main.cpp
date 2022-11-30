@@ -8,27 +8,9 @@
 
 using namespace std;
 
-extern MemAssembly STACK, HEAP;
-
-extern "C" unsigned long CALL_POINTER(int* offset);
-
 int main(int argc, char* argv[]) 
 {
     system("clear");
-
-    cout << "SECTIONS" << endl;
-    cout << "{" << endl;
-    cout << "  . = 0x2000000;" << endl;
-    cout << "  .text : { *(.text) }" << endl;
-    cout << "  . = 0x4000000;" << endl;
-    cout << "  .data : { *(.data) }" << endl;
-    cout << "  . = 0x6000000;" << endl;
-    cout << "  .bss : { *(.bss) }" << endl;
-    cout << "  . = 0x8000000;" << endl;
-    cout << "  .iceNET : { *(.iceNET)}" << endl;
-    cout << "  . = 0x8000000;" << endl;
-    cout << "  .MemClass : { *(.MemClass)}" << endl;
-    cout << "}" << endl << endl;
 
     cout << "---==[ .text ---> 0x2000000 ]==---\n" << endl;
 
@@ -95,7 +77,7 @@ int main(int argc, char* argv[])
     // cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x4) << endl;
     // cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x8) << endl;
     // cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0xC) << endl;
-    // cout << endl;
+    cout << endl;
 
     cout << "---==[ .MemClass ---> 0x8000000 ]==---" << endl;
 
@@ -105,11 +87,12 @@ int main(int argc, char* argv[])
 
     cout << "---==[ .iceNET ---> 0xA000000 ]==---\n" << endl;
 
-    unsigned int * pE = &E;
-    unsigned int * pF = &F;
+    unsigned int * pX = &X;
 
-    cout << "   pE ---> " << pE << endl;
-    cout << "   pF ---> " << pF << endl;
+    cout << "   pX     ---> "   << pX  << endl;
+    cout << "  *pX + 0 ---> 0x" << hex << *(pX + 0) << endl;
+    cout << "  *pX + 2 ---> 0x" << hex << *(pX + 2) << endl;
+    cout << "  *pX + 4 ---> 0x" << hex << *(pX + 4) << endl;
     cout << endl;
 
     cout << "---==[ Final Test ]==---" << endl;
@@ -117,31 +100,29 @@ int main(int argc, char* argv[])
     // BEGIN
     //
     cout << endl;
-    MemAssembly * pMemAssembly = new MemAssembly;
+    static MemAssembly * pMemAssembly = new MemAssembly;
     cout << "   pMemAssembly is " << pMemAssembly << endl;
     pMemAssembly->MemDump();
     delete pMemAssembly;
 
-    int  var = 20;      /* actual variable declaration */
+    int  var1 = 20;     /* actual variable declaration */
+    int  var2;          /* not initialised variable    */
+    int * ip1 = &var1;   /* store address of var in pointer variable*/
+    int * ip2 = &var2;   /* store address of var in pointer variable*/
 
-    int * ip1 = &var;   /* store address of var in pointer variable*/
-    int * ip2 = &var;   /* store address of var in pointer variable*/
-    int * ip3 = &var;   /* store address of var in pointer variable*/
-
-    cout << "   Address of var variable: " << &var << endl;
+    cout << "   Address of var variable: " << &var1 << endl;
+    cout << "   Address of var variable: " << &var2 << endl;
     cout << "   Address stored in ip1 variable: " << hex << ip1 << endl;
     cout << "   Address stored in ip2 variable: " << hex << ip2 << endl;
-    cout << "   Address stored in ip3 variable: " << hex << ip3 << endl;
     cout << "   Access the value using the *ip1 pointer: " << *ip1 << endl;
     cout << "   Access the value using the *ip2 pointer: " << *ip2 << endl;
-    cout << "   Access the value using the *ip3 pointer: " << *ip3 << endl;
     //
     // END
     //
     cout << "   Calling using auto change >> (int*)pFunction_D  ---> " << (int*)pFunction_D << endl;
-    CALL_POINTER((int*)pFunction_D);
+    CALL_PROCEDURE((int*)pFunction_D);
     // cout << "   Calling using hard value  >> 0x20001a0          ---> " << (int*)pFunction_D << endl;
-    // CALL_POINTER((int*)0x20001a0);
+    // CALL_PROCEDURE((int*)0x20001a0);
 
     return 0;
 }

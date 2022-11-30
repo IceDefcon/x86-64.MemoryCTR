@@ -9,8 +9,6 @@
 
 using namespace std;
 
-extern "C" unsigned long MEMORY_READ(unsigned int offset);
-
 class MemAssembly{
 
     public:

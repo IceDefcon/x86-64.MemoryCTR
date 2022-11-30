@@ -82,7 +82,6 @@ int main(int argc, char* argv[])
     cout << "---==[ .MemClass ---> 0x8000000 ]==---" << endl;
 
     STACK.MemDump();
-    HEAP.MemDump();
     cout << endl;
 
     cout << "---==[ .iceNET ---> 0xA000000 ]==---\n" << endl;

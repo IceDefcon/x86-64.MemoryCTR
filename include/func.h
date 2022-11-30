@@ -14,7 +14,7 @@ struct
 } DataStruct;
 
 extern unsigned int X;
-extern MemAssembly STACK, HEAP;
+extern MemAssembly STACK;
 extern "C" unsigned long CALL_PROCEDURE(int* offset);
 extern "C" unsigned long MEMORY_READ(unsigned int offset);
 

@@ -34,9 +34,6 @@ section .MemClass
 global STACK
 STACK:
 
-global HEAP
-HEAP:
-
 section .iceNET
 
 global X

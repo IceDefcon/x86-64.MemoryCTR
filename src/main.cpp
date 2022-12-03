@@ -104,8 +104,8 @@ int main(int argc, char* argv[])
     pMemAssembly->MemDump();
     delete pMemAssembly;
 
-    int  var1 = 20;     /* actual variable declaration */
-    int  var2;          /* not initialised variable    */
+    int   var1 = 20;     /* actual variable declaration */
+    int   var2;          /* not initialised variable    */
     int * ip1 = &var1;   /* store address of var in pointer variable*/
     int * ip2 = &var2;   /* store address of var in pointer variable*/
 

@@ -118,10 +118,8 @@ int main(int argc, char* argv[])
     //
     // END
     //
-    cout << "   Calling using auto change >> (int*)pFunction_D  ---> " << (int*)pFunction_D << endl;
+    cout << "   Calling using pointer definition---> " << (int*)pFunction_D << endl;
     CALL_PROCEDURE((int*)pFunction_D);
-    // cout << "   Calling using hard value  >> 0x20001a0          ---> " << (int*)pFunction_D << endl;
-    // CALL_PROCEDURE((int*)0x20001a0);
 
     return 0;
 }

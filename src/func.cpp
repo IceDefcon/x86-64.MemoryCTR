@@ -19,7 +19,7 @@ void Function_B(int x)
 
 void Function_C(int x,int y)
 {
-    cout << "   Calling Function_C" << endl;
+    cout << "   y = f(x) ---> x = f(t)" << endl;
 }
 
 void Function_D(void)

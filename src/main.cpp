@@ -92,6 +92,8 @@ int main(int argc, char* argv[])
     cout << "  *pX + 0 ---> 0x" << hex << *(pX + 0) << endl;
     cout << "  *pX + 2 ---> 0x" << hex << *(pX + 2) << endl;
     cout << "  *pX + 4 ---> 0x" << hex << *(pX + 4) << endl;
+    cout << "  *pX + 6 ---> 0x" << hex << *(pX + 6) << endl;
+    cout << "  *pX + 7 ---> 0x" << hex << *(pX + 7) << endl;
     cout << endl;
 
     cout << "---==[ Final Test ]==---" << endl;

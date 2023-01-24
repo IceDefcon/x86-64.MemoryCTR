@@ -1,9 +1,9 @@
 #
 # Author: Ice.Marek
-# 2022 IceNET Technology
+# 2023 IceNET Technology
 #
 TARGET 		= asmlink
-GCC  		= g++
+GCC  		= g++ -no-pie
 NASM 		= nasm 
 
 AFLAGS 		= -f elf64
@@ -26,7 +26,7 @@ ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
 all: main debug
 
 main: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(GCC) -T $(LDSCRIPT) $^ -o $(TARGET)
+	$(GCC) $(CFLAGS) -T $(LDSCRIPT) $^ -o $(TARGET)
 	objdump -d -M intel $^ > $(TARGET).dbg
 
 dynamic: $(CPP_OBJECTS) $(ASM_OBJECTS)

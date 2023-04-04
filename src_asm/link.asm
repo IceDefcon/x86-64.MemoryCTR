@@ -21,7 +21,7 @@ MEMORY_READ:
 
 global CALL_PROCEDURE
 CALL_PROCEDURE:
-	endbr64 
+	endbr64
 	push rbp
 	mov  rbp,rsp
 	mov  rax, rdi
@@ -54,10 +54,10 @@ SPIN_LOCK:
 	mov eax, 1  		; Set EAX = 1
 	xchg eax,[locked] 	; Swap EAX with lock variable 
 	test eax, eax 		; If EAX = 0 ---> ZF = 0
-	jnz spin_lock 		; If ZF != 0 then jump to spin_lock
+	jnz SPIN_LOCK 		; If ZF != 0 then jump to spin_lock
 	ret 				; If the spin is locked then procedure will run in a loop until released
 
-global SPIN_UNLOCK:
+global SPIN_UNLOCK
 SPIN_UNLOCK:
 	xor eax, eax 		; Zero EAX register
 	xchg eax, [locked] 	; Swap EAX with lock variable

@@ -66,10 +66,10 @@ int main(int argc, char* argv[])
     unsigned int * pC = &DataStruct.C;
     unsigned int * pD = &DataStruct.D;
 
-    cout << "   pA ---> " << &DataStruct.A << endl;
-    cout << "   pB ---> " << &DataStruct.B << endl;
-    cout << "   pC ---> " << &DataStruct.C << endl;
-    cout << "   pD ---> " << &DataStruct.D << endl;
+    cout << "   pA ---> " << &DataStruct.A << " == " << pA << endl;
+    cout << "   pB ---> " << &DataStruct.B << " == " << pB << endl;
+    cout << "   pC ---> " << &DataStruct.C << " == " << pC << endl;
+    cout << "   pD ---> " << &DataStruct.D << " == " << pD << endl;
 
     uintptr_t base = (uintptr_t)&DataStruct.A;
 

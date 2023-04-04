@@ -7,7 +7,7 @@ GCC  		= g++ -no-pie
 NASM 		= nasm 
 
 AFLAGS 		= -f elf64
-CFLAGS 		= -m64
+CFLAGS 		= -m64 -Wall
 
 LDSCRIPT    := linker/linker.ld
 
@@ -26,11 +26,11 @@ ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
 all: main debug
 
 main: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(GCC) $(CFLAGS) -T $(LDSCRIPT) $^ -o $(TARGET)
+	$(GCC) $(CFLAGS) $^ -o $(TARGET)
 	objdump -d -M intel $^ > $(TARGET).dbg
 
-dynamic: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(GCC) $^ -o $(TARGET)
+static: $(CPP_OBJECTS) $(ASM_OBJECTS)
+	$(GCC) $(CFLAGS) -T $(LDSCRIPT) $^ -o $(TARGET)
 	objdump -d -M intel $^ > $(TARGET).dbg
 	
 $(OBJ)/%.o: $(SRC)/%.cpp

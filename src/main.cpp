@@ -123,5 +123,33 @@ int main(int argc, char* argv[])
     cout << "   Calling using pointer definition---> " << (int*)pFunction_D << endl;
     CALL_PROCEDURE((int*)pFunction_D);
 
+    //
+    // Memory allocation
+    //
+    int * p_malloc = (int*)malloc(5*sizeof(int));
+    int * p_calloc = (int*)calloc(5,sizeof(int));
+
+    cout << "  p_malloc---> 0x" << hex << p_malloc << endl;
+    cout << "  p_calloc---> 0x" << hex << p_calloc << endl;
+
+    cout << endl;
+
+    *(p_malloc+2) = 0xC0DECA11;
+    *(p_calloc+4) = 0xDEADCA11;
+
+    for (int i = 0; i < 5; ++i)
+    {
+        cout << "  p_malloc---> 0x" << hex << *p_malloc << endl;
+        p_malloc++;
+    }
+
+    cout << endl;
+
+    for (int i = 0; i < 5; ++i)
+    {
+        cout << "  p_calloc---> 0x" << hex << *p_calloc << endl;
+        p_calloc++;
+    }
+
     return 0;
 }

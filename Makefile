@@ -2,7 +2,8 @@
 # Author: Ice.Marek
 # 2023 IceNET Technology
 #
-TARGET 		= asmlink
+DYNAMIC 	= dynamic
+STATIC 		= static
 GCC  		= g++ -no-pie
 NASM 		= nasm 
 
@@ -20,10 +21,15 @@ INCLUDES=\
 CPP_OBJECTS = $(CPP_SOURCES:.cpp=.o)
 ASM_OBJECTS = $(ASM_SOURCES:.asm=.o)
 
-all: $(TARGET)
+all: $(DYNAMIC)
 
-$(TARGET): $(CPP_OBJECTS) $(ASM_OBJECTS)
+$(DYNAMIC): $(CPP_OBJECTS) $(ASM_OBJECTS)
 	$(GCC) $(CFLAGS) $^ -o $@ 
+
+static: $(STATIC)
+
+$(STATIC): $(CPP_OBJECTS) $(ASM_OBJECTS)
+	$(GCC) $(CFLAGS) -T $(LDSCRIPT) $^ -o $@ 
 
 %.o: %.cpp
 	$(GCC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
@@ -32,6 +38,6 @@ $(TARGET): $(CPP_OBJECTS) $(ASM_OBJECTS)
 	$(NASM) $(AFLAGS) $(ASM_SOURCES) -o $@
 
 clean:
-	rm -f $(TARGET) $(CPP_OBJECTS) $(ASM_OBJECTS)
+	rm -f $(DYNAMIC) $(CPP_OBJECTS) $(ASM_OBJECTS)
 
-.PHONY: all clean
+.PHONY: all static clean

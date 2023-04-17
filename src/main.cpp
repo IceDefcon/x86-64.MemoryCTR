@@ -73,10 +73,10 @@ int main(int argc, char* argv[])
 
     uintptr_t base = (uintptr_t)&DataStruct.A;
 
-    // cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x0) << endl;
-    // cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x4) << endl;
-    // cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x8) << endl;
-    // cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0xC) << endl;
+    cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x0) << endl;
+    cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x4) << endl;
+    cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x8) << endl;
+    cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0xC) << endl;
     cout << endl;
 
     cout << "---==[ .MemClass ---> 0x8000000 ]==---" << endl;

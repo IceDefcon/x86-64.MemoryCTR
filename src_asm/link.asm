@@ -12,6 +12,7 @@
 ;
 
 section .text
+global _start
 
 global MEMORY_READ
 MEMORY_READ:

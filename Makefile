@@ -7,42 +7,31 @@ GCC  		= g++ -no-pie
 NASM 		= nasm 
 
 AFLAGS 		= -f elf64
-CFLAGS 		= -m64 -Wall
+CFLAGS 		= -m64
 
 LDSCRIPT    := linker/linker.ld
 
-SRC 		:= src
-OBJ 		:= src
-CPP_INCLUDE	:= include
-CPP_SOURCES := $(wildcard $(SRC)/*.cpp)
-CPP_OBJECTS := $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(CPP_SOURCES))
-DBG_OBJECTS := $(patsubst $(SRC)/%.cpp, $(OBJ)/%.dbg, $(CPP_SOURCES))
+ASM_SOURCES = $(shell find . -name "*.asm")
+CPP_SOURCES = $(shell find . -name "*.cpp")
 
-SRC_ASM 	:= src_asm
-OBJ_ASM 	:= src_asm
-ASM_SOURCES := $(wildcard src_asm/*.asm)
-ASM_OBJECTS := $(patsubst $(SRC_ASM)/%.asm, $(OBJ_ASM)/%.o, $(ASM_SOURCES))
+INCLUDES=\
+	include \
 
-all: main debug
+CPP_OBJECTS = $(CPP_SOURCES:.cpp=.o)
+ASM_OBJECTS = $(ASM_SOURCES:.asm=.o)
 
-main: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(GCC) $(CFLAGS) $^ -o $(TARGET)
-	objdump -d -M intel $^ > $(TARGET).dbg
+all: $(TARGET)
 
-static: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(GCC) $(CFLAGS) -T $(LDSCRIPT) $^ -o $(TARGET)
-	objdump -d -M intel $^ > $(TARGET).dbg
-	
-$(OBJ)/%.o: $(SRC)/%.cpp
-	$(GCC) $(CFLAGS) -I $(CPP_INCLUDE) -c $< -o $@
+$(TARGET): $(CPP_OBJECTS) $(ASM_OBJECTS)
+	$(GCC) $(CFLAGS) $^ -o $@ 
 
-$(OBJ_ASM)/%.o:$(SRC_ASM)/%.asm
+%.o: %.cpp
+	$(GCC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
+
+%.o: %.asm
 	$(NASM) $(AFLAGS) $(ASM_SOURCES) -o $@
 
-debug: $(DBG_OBJECTS)
-
-$(OBJ)/%.dbg: $(SRC)/%.o
-	objdump -d -M intel $< > $@
-
 clean:
-	rm $(TARGET) $(ASM_OBJECTS) $(CPP_OBJECTS) $(TARGET).dbg $(DBG_OBJECTS)
+	rm -f $(TARGET) $(CPP_OBJECTS) $(ASM_OBJECTS)
+
+.PHONY: all clean

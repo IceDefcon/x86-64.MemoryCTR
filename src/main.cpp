@@ -73,9 +73,9 @@ int main(int argc, char* argv[])
 
     uintptr_t base = (uintptr_t)&DataStruct.A;
 
-    cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x0) << endl;
-    cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x4) << endl;
-    cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0x8) << endl;
+    cout << "   Read Data from 0x" << hex << base + 0x0 << " ---> " << MEMORY_READ(base + 0x0) << endl;
+    cout << "   Read Data from 0x" << hex << base + 0x4 << " ---> " << MEMORY_READ(base + 0x4) << endl;
+    cout << "   Read Data from 0x" << hex << base + 0x8 << " ---> " << MEMORY_READ(base + 0x8) << endl;
     cout << "   Read Data from 0x" << hex << base + 0xC << " ---> " << MEMORY_READ(base + 0xC) << endl;
     cout << endl;
 
@@ -96,41 +96,30 @@ int main(int argc, char* argv[])
     cout << "  *pX + 7 ---> 0x" << hex << *(pX + 7) << endl;
     cout << endl;
 
-    cout << "---==[ Final Test ]==---" << endl;
-    //
-    // BEGIN
-    //
+    cout << "---==[ Class Test ]==---" << endl;
     cout << endl;
+
     static MemAssembly * pMemAssembly = new MemAssembly;
     cout << "   pMemAssembly is " << pMemAssembly << endl;
+
     pMemAssembly->MemDump();
     delete pMemAssembly;
 
-    int   var1 = 20;     /* actual variable declaration */
-    int   var2;          /* not initialised variable    */
-    int * ip1 = &var1;   /* store address of var in pointer variable*/
-    int * ip2 = &var2;   /* store address of var in pointer variable*/
-
-    cout << "   Address of var variable: " << &var1 << endl;
-    cout << "   Address of var variable: " << &var2 << endl;
-    cout << "   Address stored in ip1 variable: " << hex << ip1 << endl;
-    cout << "   Address stored in ip2 variable: " << hex << ip2 << endl;
-    cout << "   Access the value using the *ip1 pointer: " << *ip1 << endl;
-    cout << "   Access the value using the *ip2 pointer: " << *ip2 << endl;
-    //
-    // END
-    //
     cout << "   Calling using pointer definition---> " << (int*)pFunction_D << endl;
     CALL_PROCEDURE((int*)pFunction_D);
 
     //
     // Memory allocation
     //
+    cout << endl;
+    cout << "---==[ Memory accocations ]==---" << endl;
+    cout << endl;
+
     int * p_malloc = (int*)malloc(5*sizeof(int));
     int * p_calloc = (int*)calloc(5,sizeof(int));
 
-    cout << "  p_malloc---> 0x" << hex << p_malloc << endl;
-    cout << "  p_calloc---> 0x" << hex << p_calloc << endl;
+    cout << "   p_malloc---> 0x" << hex << p_malloc << endl;
+    cout << "   p_calloc---> 0x" << hex << p_calloc << endl;
 
     cout << endl;
 
@@ -139,7 +128,7 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < 5; ++i)
     {
-        cout << "  p_malloc---> 0x" << hex << *p_malloc << endl;
+        cout << "   p_malloc---> 0x" << hex << *p_malloc << endl;
         p_malloc++;
     }
 
@@ -147,7 +136,7 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < 5; ++i)
     {
-        cout << "  p_calloc---> 0x" << hex << *p_calloc << endl;
+        cout << "   p_calloc---> 0x" << hex << *p_calloc << endl;
         p_calloc++;
     }
 

@@ -4,7 +4,7 @@
 #
 DYNAMIC 	= dynamic
 STATIC 		= static
-GCC  		= g++ -no-pie
+GCC  		= g++
 NASM 		= nasm 
 
 AFLAGS 		= -f elf64
@@ -21,15 +21,15 @@ INCLUDES=\
 CPP_OBJECTS = $(CPP_SOURCES:.cpp=.o)
 ASM_OBJECTS = $(ASM_SOURCES:.asm=.o)
 
-all: $(DYNAMIC)
+all: $(DYNAMIC) $(STATIC)
 
 $(DYNAMIC): $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(GCC) $(CFLAGS) $^ -o $@ 
-
-static: $(STATIC)
+	$(GCC) $(CFLAGS) -no-pie $^ -o $@ 
+	size $(DYNAMIC)
 
 $(STATIC): $(CPP_OBJECTS) $(ASM_OBJECTS)
 	$(GCC) $(CFLAGS) -T $(LDSCRIPT) $^ -o $@ 
+	size $(STATIC)
 
 %.o: %.cpp
 	$(GCC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
@@ -38,6 +38,6 @@ $(STATIC): $(CPP_OBJECTS) $(ASM_OBJECTS)
 	$(NASM) $(AFLAGS) $(ASM_SOURCES) -o $@
 
 clean:
-	rm -f $(DYNAMIC) $(CPP_OBJECTS) $(ASM_OBJECTS)
+	rm -f $(DYNAMIC) $(STATIC) $(CPP_OBJECTS) $(ASM_OBJECTS)
 
-.PHONY: all static clean
+.PHONY: all clean

@@ -50,16 +50,16 @@ X:
 locked:
 	dd 0
 
-global SPIN_LOCK
-SPIN_LOCK:
-	mov eax, 1  		; Set EAX = 1
-	xchg eax,[locked] 	; Swap EAX with lock variable 
-	test eax, eax 		; If EAX = 0 ---> ZF = 0
-	jnz SPIN_LOCK 		; If ZF != 0 then jump to spin_lock
-	ret 				; If the spin is locked then procedure will run in a loop until released
+; global SPIN_LOCK
+; SPIN_LOCK:
+; 	mov eax, 1  		; Set EAX = 1
+; 	xchg eax,[locked] 	; Swap EAX with lock variable 
+; 	test eax, eax 		; If EAX = 0 ---> ZF = 0
+; 	jnz SPIN_LOCK 		; If ZF != 0 then jump to spin_lock
+; 	ret 				; If the spin is locked then procedure will run in a loop until released
 
-global SPIN_UNLOCK
-SPIN_UNLOCK:
-	xor eax, eax 		; Zero EAX register
-	xchg eax, [locked] 	; Swap EAX with lock variable
-	ret 				; Lock has been released 
+; global SPIN_UNLOCK
+; SPIN_UNLOCK:
+; 	xor eax, eax 		; Zero EAX register
+; 	xchg eax, [locked] 	; Swap EAX with lock variable
+; 	ret 				; Lock has been released 

@@ -24,5 +24,6 @@ void Function_C(int x,int y)
 
 void Function_D(void)
 {
+    cout << "   Calling Function_C from Function_D" << endl;
     Function_C(500,800);
 }

@@ -1,8 +1,7 @@
-# x86_64.MemoryLinker
+# x86_64.MemoryCTR
 
 
 # PROBLEMS
 
-	1. xchg instruction in SPIN_LOCK cannot be used with PIE (Position Intependent Executable)
 
 # ICE

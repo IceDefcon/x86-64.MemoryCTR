@@ -2,14 +2,10 @@
 # Author: Ice.Marek
 # 2023 IceNET Technology
 #
-AUTO 		= auto
-MANUAL 		= manual
-GCC  		= g++
-NASM 		= nasm 
-
-AFLAGS 		= -f elf64
-CFLAGS 		= -m64
-
+AUTO 		= app
+MANUAL 		= app.linked
+GCC  		= g++ 
+CFLAGS 		= -Wall -Wextra -std=c++11 -O2 -g
 LDSCRIPT    := linker/linker.ld
 
 ASM_SOURCES = $(shell find . -name "*.asm")
@@ -23,19 +19,16 @@ ASM_OBJECTS = $(ASM_SOURCES:.asm=.o)
 
 all: $(AUTO) $(MANUAL)
 
-$(AUTO): $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(GCC) $(CFLAGS) -no-pie $^ -o $@ 
+$(AUTO): $(CPP_OBJECTS)
+	$(GCC) $(CFLAGS) $^ -o $@ 
 	size $(AUTO)
 
-$(MANUAL): $(CPP_OBJECTS) $(ASM_OBJECTS)
+$(MANUAL): $(CPP_OBJECTS)
 	$(GCC) $(CFLAGS) -T $(LDSCRIPT) $^ -o $@ 
 	size $(MANUAL)
 
 %.o: %.cpp
 	$(GCC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
-
-%.o: %.asm
-	$(NASM) $(AFLAGS) $(ASM_SOURCES) -o $@
 
 clean:
 	rm -f $(AUTO) $(MANUAL) $(CPP_OBJECTS) $(ASM_OBJECTS)

@@ -8,14 +8,11 @@ GCC  		= g++
 CFLAGS 		= -Wall -Wextra -std=c++11 -O2 -g
 LDSCRIPT    := linker/linker.ld
 
-ASM_SOURCES = $(shell find . -name "*.asm")
 CPP_SOURCES = $(shell find . -name "*.cpp")
+CPP_OBJECTS = $(CPP_SOURCES:.cpp=.o)
 
 INCLUDES=\
 	include \
-
-CPP_OBJECTS = $(CPP_SOURCES:.cpp=.o)
-ASM_OBJECTS = $(ASM_SOURCES:.asm=.o)
 
 all: $(AUTO) $(MANUAL)
 
@@ -31,6 +28,6 @@ $(MANUAL): $(CPP_OBJECTS)
 	$(GCC) $(CFLAGS) -I $(INCLUDES) -c -o $@ $<
 
 clean:
-	rm -f $(AUTO) $(MANUAL) $(CPP_OBJECTS) $(ASM_OBJECTS)
+	rm -f $(AUTO) $(MANUAL) $(CPP_OBJECTS)
 
 .PHONY: all clean

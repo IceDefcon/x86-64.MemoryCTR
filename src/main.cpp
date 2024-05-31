@@ -1,41 +1,24 @@
 //
 // Author: Ice.Marek
-// 2023 IceNET Technology
+// 2024 IceNET Technology
 //
 #include <iostream>
 #include <string>
 
-#include "parent.h"
-#include "child.h"
+#include "Device.h"
 
-void Log(const char* message)
+int main()
 {
-    std::cout << message << std::endl;
-}
+    Core* pCore = nullptr; /* Stack Allocation */
+    Device* pDevice = new Device(); /* Heap Allocation */
 
-int main(int argc, char* argv[]) 
-{
-    //
-    //
-    //
-    std::cout << "Program name: " << argv[0] << std::endl;
-    for (int i = 1; i < argc; i++) 
-    {
-        std::cout << "Argument[" << i << "]: " << argv[i] << std::endl;
-    }
-    std::cout << std::endl;
+    pCore = pDevice;
+    pCore->openDEV();
+    pCore->dataRX();
+    pCore->dataTX();
+    pCore->closeDEV();
 
-    //
-    //
-    //
-    Log("Parent Class:");
-    parent dad(2,3,1);
-    dad.print();
-
-    Log("Child Class:");
-    child baby(1,1,1);
-    baby.print();
-
+    delete pCore;
 
     return 0;
 }
